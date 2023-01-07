@@ -102,3 +102,46 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #343a40;
+  font-size: 0.85rem;
+}
+.nav-link:hover {
+  color: #626e78;
+}
+.brand {
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+#facebook:hover svg {
+  transition: all 250ms cubic-bezier(0.2, 0.16, 0.79, 1);
+  color: #385898;
+}
+#twitter:hover svg {
+  transition: all 250ms cubic-bezier(0.2, 0.16, 0.79, 1);
+  color: #1d9bf0;
+}
+#email:hover svg {
+  transition: all 250ms cubic-bezier(0.2, 0.16, 0.79, 1);
+  color: #a1a1a1;
+}
