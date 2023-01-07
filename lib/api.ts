@@ -144,11 +144,36 @@ export async function getAllHistory() {
   return data?.posts;
 }
 
-export async function getLampBySlug(slug: string) {
+export async function getAllReferences() {
   const data = await fetchAPI(
     `
-    query LampBySlug($slug: String){
-      posts (where: {name: $slug}){
+    query AllReferences{
+      posts (where: {categoryName: "referenciak", orderby: {field: DATE, order: DESC}}){
+        edges{
+          node{
+            title,
+            content,
+            featuredImage{
+              node{
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.posts;
+}
+
+export async function getLampBySlug(slug: string) {
+  console.log(slug);
+  const data = await fetchAPI(
+    `
+    query LampBySlug{
+      posts (where: {name: "${slug}"}){
         edges{
           node{
             title,
@@ -163,8 +188,7 @@ export async function getLampBySlug(slug: string) {
         }
       }
     }
-    `,
-    { slug }
+    `
   );
 
   return data?.posts;

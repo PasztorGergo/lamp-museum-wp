@@ -1,23 +1,25 @@
 "use client";
 
-import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   createStyles,
+  LoadingOverlay,
   Stack,
   Text,
   Title,
   useMantineTheme,
 } from "@mantine/core";
+import Testimonial from "../../components/testimonial";
 
 const useStyles = createStyles((theme) => ({
   section: {
     placeItems: "center",
     alignContent: "center",
+    position: "relative",
+    minHeight: "fit-content",
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gridGap: "20px",
-    padding: " 3rem 2rem 3rem",
     [theme.fn.largerThan("sm")]: {
       padding: "3rem 6rem 3rem",
     },
@@ -27,40 +29,59 @@ const useStyles = createStyles((theme) => ({
 const Referenciak = () => {
   const theme = useMantineTheme();
   const { classes } = useStyles();
+  const [testimonalArray, setTestimonials] = useState<Array<unknown>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/getReferences", {
+      method: "GET",
+    }).then((x) =>
+      x.json().then(({ data }) => {
+        setTestimonials(data.edges);
+        setLoading(false);
+      })
+    );
+  }, []);
+
   return (
-    <>
-      <Head>
-        <title>Referenciák | Villamostechnikai Gyűjtemény</title>
-      </Head>
-      <Stack pt="8rem" px="6rem">
-        <Title sx={{ color: theme.colors.gray[8] }}>Referenciák</Title>
-        <Text size="lg" sx={{ color: theme.colors.gray[8] }}>
-          Látogatóink, illetve a nagyérdemű véleményét és a munkásságunkról
+    <main className="px-12 py-6">
+      <Stack pt="8rem" px="6rem" align="center">
+        <Title sx={{ color: theme.colors.gray[8], textAlign: "center" }}>
+          Referenciák
+        </Title>
+        <Text
+          size="lg"
+          sx={{ color: theme.colors.gray[8], textAlign: "center" }}
+        >
+          Látogatóink, illetve a nagyérdemű véleményeket és a munkásságunkról
           szóló cikkeket itt tekintheti meg.
         </Text>
       </Stack>
 
       <section className={classes.section}>
-        {/* {testiminalArray.map(
-          ({ name, comment, profileImg }: any, index: number) => (
+        <LoadingOverlay visible={loading} loaderProps={{ color: "orange" }} />
+        {testimonalArray.length > 0 ? (
+          testimonalArray.map(({ node }: any) => (
             <Testimonial
-              key={index}
-              name={name}
-              comment={comment}
-              profileImg={profileImg}
-              isPage={false}
+              content={node.content}
+              featuredImage={node.featuredImage.node.sourceUrl}
+              title={node.title}
+              key={node.title}
             />
-          )
-        )} */}
+          ))
+        ) : (
+          <Title
+            sx={{ width: "100%", color: theme.colors.gray[8], height: "6rem" }}
+            align="center"
+            mb="3rem"
+            order={4}
+          >
+            Lépjen kapcsolatba velünk és legyen Ön a következő értékelőnk!
+          </Title>
+        )}
       </section>
-      <Title
-        sx={{ width: "100%", color: theme.colors.gray[8] }}
-        align="center"
-        mb="3rem"
-      >
-        Lépjen kapcsolatba velünk és legyen Ön a következő értékelőnk!
-      </Title>
-    </>
+    </main>
   );
 };
 
