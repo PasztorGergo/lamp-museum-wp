@@ -1,6 +1,5 @@
 "use client";
 
-import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import {
@@ -29,7 +28,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Tamogatoink: NextPage = () => {
+const Tamogatoink = () => {
   const theme = useMantineTheme();
   const { classes } = useStyles();
   return (
