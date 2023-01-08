@@ -6,8 +6,9 @@ const Head = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <title></title>
+      <title>{lamp.title}</title>
       <meta property="description" content={`${lamp.excerpt}`} />
+      <meta name="viewport" content="width=device-width" />
       <meta property="og:description" content={`${lamp.excerpt}`} />
       <meta
         property="og:image"

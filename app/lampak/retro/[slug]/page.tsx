@@ -16,7 +16,11 @@ const Fenyforras = async ({ params }: { params: { slug: string } }) => {
     <main>
       <article>
         <Container>
-          <PostHeader title={post.title} coverImage={post.featuredImage} />
+          <PostHeader
+            title={post.title}
+            coverImage={post.featuredImage}
+            date={post.date}
+          />
         </Container>
         <PostBody content={post.content} />
       </article>

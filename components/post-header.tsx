@@ -20,7 +20,7 @@ export default function PostHeader({
       {date && (
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 text-lg text-[#343a40]">
-            Közzétéve <Date dateString={date} />
+            <Date dateString={date} />
           </div>
         </div>
       )}

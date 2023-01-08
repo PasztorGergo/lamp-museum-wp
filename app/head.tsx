@@ -22,6 +22,7 @@ const Head = () => {
       />
       <meta name="og:image" content="" />
       <title>Villamostechnikai Gyűjtemény</title>
+      <meta name="viewport" content="width=device-width" />
     </>
   );
 };

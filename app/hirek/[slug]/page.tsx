@@ -1,6 +1,5 @@
 import Container from "../../../components/container";
 import PostBody from "../../../components/post-body";
-import Header from "../../../components/header";
 import PostHeader from "../../../components/post-header";
 import SectionSeparator from "../../../components/section-separator";
 import Tags from "../../../components/tags";
@@ -38,12 +37,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           />
         </Container>
         <PostBody content={post.content} />
-        <footer>
-          {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
-        </footer>
       </article>
-
-      <SectionSeparator />
       {posts.edges.length > 0 && (
         <News
           newsArray={(posts.edges as Array<unknown>)

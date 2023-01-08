@@ -74,7 +74,7 @@ export default function Hero() {
 
   return (
     <header className={classes.header}>
-      <Group pl={breakPoint ? "6em" : "xl"} className={classes.group}>
+      <Group px={breakPoint ? "6em" : "xl"} className={classes.group}>
         <Stack className={classes.stack} justify="center">
           <Title className={classes.text} order={1}>
             A múlt fényeinek nyomában

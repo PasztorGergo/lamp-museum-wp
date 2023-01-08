@@ -168,8 +168,30 @@ export async function getAllReferences() {
   return data?.posts;
 }
 
+export async function getAllPartner() {
+  const data = await fetchAPI(
+    `
+      query AllSupport{
+        posts (where: {categoryName: "partnerek"}){
+          edges{
+            node{
+              title,
+              featuredImage{
+                node{
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  return data?.posts;
+}
+
 export async function getLampBySlug(slug: string) {
-  console.log(slug);
   const data = await fetchAPI(
     `
     query LampBySlug{
@@ -183,7 +205,7 @@ export async function getLampBySlug(slug: string) {
               }
             },
             content,
-            excerpt
+            date
           }
         }
       }

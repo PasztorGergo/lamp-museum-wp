@@ -8,6 +8,7 @@ const NewsHead = async ({ params }: { params: { slug: string } }) => {
     <>
       <link rel="icon" href="/icon.png" />
       <title>{`${post.edges[0].node.title}  | Villamostechnikai Gyűjtemény`}</title>
+      <meta name="viewport" content="width=device-width" />
     </>
   );
 };

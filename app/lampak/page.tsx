@@ -16,6 +16,16 @@ const styles = createStyles((theme) => ({
     color: theme.colors.gray[8],
     textAlign: "center",
   },
+  header: {
+    minHeight: "30vh",
+    margin: "8rem 0 2rem 0",
+    padding: "0 6rem",
+    [theme.fn.smallerThan("md")]: {
+      padding: "0 2rem",
+      minHeight: "30vh",
+      margin: "8rem 0 2rem 0",
+    },
+  },
 }));
 
 const Lampak = () => {
@@ -48,15 +58,7 @@ const Lampak = () => {
   return (
     <main className="relative min-h-fit">
       <LoadingOverlay visible={loading} loaderProps={{ color: "orange" }} />
-      <Group
-        className="lamps"
-        sx={{
-          minHeight: "30vh",
-          margin: "8rem 0 2rem 0",
-          padding: "0 6rem",
-        }}
-        noWrap={false}
-      >
+      <Group className={"lamps " + classes.header} noWrap={false}>
         <Paper sx={{ width: "75vw" }} mx="auto" withBorder p="xl">
           <Select
             label="Válasszon kategoriát"
@@ -66,7 +68,7 @@ const Lampak = () => {
           ></Select>
         </Paper>
       </Group>
-      <section className="p-6 grid [grid-template-columns: repeat(auto-fill, 25rem)] min-h-[40vh]">
+      <section className="p-6 grid [grid-template-columns: repeat(auto-fill, 25rem)] min-h-[40vh] place-items-center">
         {lampArray.length > 0 ? (
           lampArray.map((edge) => (
             <LampCard
