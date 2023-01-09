@@ -191,6 +191,29 @@ export async function getAllPartner() {
   return data?.posts;
 }
 
+export async function getAllSupport() {
+  const data = await fetchAPI(
+    `
+      query AllSupport{
+        posts (where: {categoryName: "tamogatoink"}){
+          edges{
+            node{
+              title,
+              featuredImage{
+                node{
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  return data?.posts;
+}
+
 export async function getLampBySlug(slug: string) {
   const data = await fetchAPI(
     `
